@@ -32,7 +32,6 @@ int main() {
     double cpu_time_used;
     dir = opendir(intancesFolder);
     if (dir == NULL) {
-        perror("Erro ao abrir o diretório");
         return EXIT_FAILURE;
     }
     while ((entry = readdir(dir)) != NULL) {
@@ -48,12 +47,10 @@ int main() {
         outputPath[strlen(outputPath) - 2] = 'u';
         inputFile = fopen(inputPath, "r");
         if (inputFile == NULL) {
-            perror("Erro ao abrir o arquivo de entrada");
             return EXIT_FAILURE;
         }
         outputFile = fopen(outputPath, "w");
         if (outputFile == NULL) {
-            perror("Erro ao abrir o arquivo de saída");
             fclose(inputFile);
             return EXIT_FAILURE;
         }
@@ -73,7 +70,7 @@ int main() {
 
             start = clock();
             if (j != 9) selectionSort(arCopy, i);
-            else selectionSort(ar, i); 
+            else selectionSort(ar, i);
             end = clock();
 
             cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;

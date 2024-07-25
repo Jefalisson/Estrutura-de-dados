@@ -44,12 +44,10 @@ int main() {
         outputPath[strlen(outputPath) - 2] = 'u';
         inputFile = fopen(inputPath, "r");
         if (inputFile == NULL) {
-            perror("Erro ao abrir o arquivo de entrada");
             return EXIT_FAILURE;
         }
         outputFile = fopen(outputPath, "w");
         if (outputFile == NULL) {
-            perror("Erro ao abrir o arquivo de saída");
             fclose(inputFile);
             return EXIT_FAILURE;
         }
