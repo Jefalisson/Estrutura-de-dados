@@ -25,7 +25,7 @@ int main() {
     DIR *dir;
     struct dirent *entry;
     const char *intancesFolder = "C:/Users/jeffe/documents/ufpb/instancias-num";
-    const char *resultsFolder = "C:/Users/jeffe/documents/ufpb/resultados-num/insertion/";
+    const char *resultsFolder = "C:/Users/jeffe/documents/ufpb/resultados-num/selection/";
     FILE *inputFile, *outputFile;
     char inputPath[MAX_PATH_LEN], outputPath[MAX_PATH_LEN];
     clock_t start, end;
