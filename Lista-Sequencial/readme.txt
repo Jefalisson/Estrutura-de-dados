@@ -1,1 +1,0 @@
-Exercicio de lista sequencial
