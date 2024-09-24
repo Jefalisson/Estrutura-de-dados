@@ -11,27 +11,6 @@ typedef struct Node {
     struct Node* next;
 } Node;
 
-// Função para gerar a matriz de distâncias e salvá-la em um arquivo
-void gerarMatrizArquivo(int tamanho) {
-    FILE *arquivo = fopen("pcv.txt", "w");
-    fprintf(arquivo, "%d\n", tamanho);
-
-    srand(time(0)); // Usar tempo como semente para números aleatórios
-
-    for (int i = 0; i < tamanho; i++) {
-        for (int j = 0; j < tamanho; j++) {
-            if (i == j) {
-                fprintf(arquivo, "0 "); // Distância zero para a diagonal
-            } else {
-                fprintf(arquivo, "%d ", rand() % 100 + 1); // Distância aleatória entre 1 e 100
-            }
-        }
-        fprintf(arquivo, "\n");
-    }
-    fclose(arquivo);
-    printf("Arquivo pcv.txt gerado com sucesso!\n");
-}
-
 // Função para ler a matriz de distâncias do arquivo
 int** read_instance(const char* instance_name, int* dimension) {
     FILE *fp = fopen(instance_name, "r");
@@ -187,16 +166,16 @@ void DFS(int start, Node** adj_list, int dimension) {
     free(status);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        printf("Uso: %s <caminho_para_o_arquivo>\n", argv[0]);
+        return 1;
+    }
+
     int tamanho;
-    printf("Indique o tamanho da matriz: ");
-    scanf("%d", &tamanho);
-
-    // Gera a matriz e salva no arquivo
-    gerarMatrizArquivo(tamanho);
-
+    
     // Carrega a matriz do arquivo
-    int** distance_matrix = read_instance("pcv.txt", &tamanho);
+    int** distance_matrix = read_instance(argv[1], &tamanho);
     if (distance_matrix == NULL) {
         return -1; // Erro ao ler o arquivo
     }
